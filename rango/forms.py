@@ -1,5 +1,7 @@
 from django import forms
-from rango.models import Page, Category
+from rango.models import Page, Category, UserProfile
+from django.contrib.auth.models import User
+
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name.")
@@ -42,3 +44,21 @@ class PageForm(forms.ModelForm):
             cleaned_data['url'] = url
 
         return cleaned_data
+
+
+class UserForm(forms.ModelForm):
+    # Password will be hidden as the user types it in
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        # References back to the model the ModelForm inheritting should relate to
+        model = User
+        # Indicate which fields associated with the model should be present on the form
+        fields = ('username', 'email', 'password')
+
+
+class UserProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
