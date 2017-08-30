@@ -55,8 +55,6 @@ ROOT_URLCONF = 'tango_with_django_project.urls'
 
 WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
-LOGIN_URL = '/rango/login/'
-
 # Registration
 
 REGISTRATION_OPEN = True        # If True, users can register
